@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6934670b86006e5468004cd97e2b8a00, type: 3}
+  m_Name: Pattern_1
+  m_EditorClassIdentifier: 
+  Type: 1
+  MinimumValue: 0
+  MaximumValue: 1
+  ColorVariance: 0.1
+  ElementSize: 1
+  Direction: 1
+  TextureSize: 8
+  Texture: {fileID: 28615290949909938}
+  HasTexture: 1
+  IsDirty: 0
+--- !u!28 &28615290949909938
+Texture2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Pattern Texture
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  serializedVersion: 2
+  m_Width: 8
+  m_Height: 8
+  m_CompleteImageSize: 192
+  m_TextureFormat: 3
+  m_MipCount: 1
+  m_IsReadable: 1
+  m_AlphaIsTransparency: 0
+  m_ImageCount: 1
+  m_TextureDimension: 2
+  m_TextureSettings:
+    m_FilterMode: 0
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapMode: 0
+  m_LightmapFormat: 0
+  m_ColorSpace: 1
+  image data: 192
+  _typelessdata: efefef050505f0f0f0111111eeeeee191919fefefe1616160a0a0affffff151515f9f9f90f0f0ff0f0f00c0c0ce9e9e9fdfdfd141414f0f0f0171717f9f9f9141414e8e8e8050505151515ebebeb0d0d0deaeaea161616fefefe070707fbfbfbf0f0f0060606fcfcfc0d0d0df5f5f5181818ececec0909090b0b0bebebeb0c0c0cf6f6f6020202ededed181818fbfbfbf3f3f3111111e7e7e7040404f4f4f4090909fbfbfb0202020e0e0ef8f8f8181818ededed080808e7e7e7010101efefef
+  m_StreamData:
+    offset: 0
+    size: 0
+    path: 

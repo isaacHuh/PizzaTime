@@ -11,7 +11,7 @@ public class LevelGenerate : MonoBehaviour
     public GameObject block;
     public float blockSize = 5;
 
-    List<Vector2> openSpots = new List<Vector2>();
+    public List<Vector2> openSpots = new List<Vector2>();
 
     private void Awake()
     {

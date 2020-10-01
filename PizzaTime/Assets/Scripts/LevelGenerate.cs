@@ -18,7 +18,7 @@ public class LevelGenerate : MonoBehaviour
         LevelGenerate.level++;
         levelArray = new int[arraySize, arraySize];
 
-        while (openSpots.Count < (arraySize * arraySize)/4)
+        while (openSpots.Count < (arraySize * arraySize)/2)
         {
             CreateLevel();
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[ExecuteInEditMode]
+//[ExecuteInEditMode]
 public class MeshGenerator : MonoBehaviour
 {
 
@@ -75,7 +75,7 @@ public class MeshGenerator : MonoBehaviour
 
                 for (int j = 0; j < octaves; j++)
                 {
-                    float perlinVal = Mathf.PerlinNoise(x / scale * frequency, z / scale * frequency) * 2 - 1;
+                    float perlinVal = Mathf.PerlinNoise(x / scale * frequency, z / scale * frequency) * 0.5f - 0.25f;
                     y += perlinVal * amplitude;
 
                     amplitude *= persistence;
@@ -98,7 +98,14 @@ public class MeshGenerator : MonoBehaviour
                 {
                     if (levelArray[arrayX, arrayY] == 1)
                     {
-                        y *= 0.1f;
+                        //((float)(z - 25) / levelGenerate.blockSize) / (float)arrayY)
+
+                        //float yMult = Mathf.Abs((float)(z - 25) / levelGenerate.blockSize - (float)arrayY - 0.5f);
+
+                        //float xMult = Mathf.Abs((float)(x - 25) / levelGenerate.blockSize - (float)arrayX - 0.5f);
+
+                        y *= 0.025f;
+                        //y -= 0.2f;
                     }
                 }
 

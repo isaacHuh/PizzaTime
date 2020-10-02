@@ -68,7 +68,7 @@ public class MeshGenerator : MonoBehaviour
         {
             for (int x = 0; x <= xSize; x++)
             {
-                
+
                 float y = 0;
                 float amplitude = 1;
                 float frequency = 1;
@@ -91,8 +91,8 @@ public class MeshGenerator : MonoBehaviour
                     minNoiseHeight = y;
                 }
 
-                int arrayY = (int)((float)(z-50) / levelGenerate.blockSize);
-                int arrayX = (int)((float)(x-50) / levelGenerate.blockSize);
+                int arrayY = (int)((float)(z - 50) / levelGenerate.blockSize);
+                int arrayX = (int)((float)(x - 50) / levelGenerate.blockSize);
 
                 if (arrayX < levelGenerate.arraySize && arrayY < levelGenerate.arraySize && arrayX >= 0 && arrayY >= 0)
                 {
@@ -107,8 +107,9 @@ public class MeshGenerator : MonoBehaviour
                         y *= 0.1f;
                         //y -= 0.2f;
                     }
+                    y *= 0.1f;
                 }
-                y *= 0.1f;
+                
                 vertices[i] = new Vector3(x, y, z);
 
                 uv[i] = new Vector2((float)x / xSize, (float)z / zSize);

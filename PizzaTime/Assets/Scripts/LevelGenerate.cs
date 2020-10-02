@@ -121,8 +121,14 @@ public class LevelGenerate : MonoBehaviour
             {
                 if (levelArray[i, j] != 1)
                 {
-                    Quaternion angle = Quaternion.Euler(0, 90*Random.Range(0,4), 0);
-                    Instantiate(blocks[Random.Range(0,blocks.Count)], transform.position + new Vector3(i * blockSize, -1, j * blockSize), Quaternion.identity,transform);
+                    if (levelArray[i, Mathf.Clamp(j + 1, 0, arraySize - 1)] == 1 || 
+                        levelArray[i, Mathf.Clamp(j - 1, 0, arraySize - 1)] == 1 ||
+                        levelArray[Mathf.Clamp(i + 1, 0, arraySize - 1), j] == 1 ||
+                        levelArray[Mathf.Clamp(i - 1, 0, arraySize - 1), j] == 1) {
+
+                        Quaternion angle = Quaternion.Euler(0, 90 * Random.Range(0, 4), 0);
+                        Instantiate(blocks[Random.Range(0, blocks.Count)], transform.position + new Vector3(i * blockSize, -1.1f, j * blockSize), angle, transform);
+                    }
                 }
             }
         }

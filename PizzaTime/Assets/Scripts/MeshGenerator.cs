@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[ExecuteInEditMode]
+//[ExecuteInEditMode]
 public class MeshGenerator : MonoBehaviour
 {
 
@@ -28,8 +28,8 @@ public class MeshGenerator : MonoBehaviour
     void Start()
     {
         levelArray = levelGenerate.GetLevelArray();
-        xSize = levelGenerate.arraySize * (int)levelGenerate.blockSize + 50;
-        zSize = levelGenerate.arraySize * (int)levelGenerate.blockSize + 50;
+        xSize = levelGenerate.arraySize * (int)levelGenerate.blockSize + 100;
+        zSize = levelGenerate.arraySize * (int)levelGenerate.blockSize + 100;
 
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
@@ -68,14 +68,14 @@ public class MeshGenerator : MonoBehaviour
         {
             for (int x = 0; x <= xSize; x++)
             {
-                
+
                 float y = 0;
                 float amplitude = 1;
                 float frequency = 1;
 
                 for (int j = 0; j < octaves; j++)
                 {
-                    float perlinVal = Mathf.PerlinNoise(x / scale * frequency, z / scale * frequency) * 2 - 1;
+                    float perlinVal = Mathf.PerlinNoise(x / scale * frequency, z / scale * frequency) * 0.5f - 0.25f;
                     y += perlinVal * amplitude;
 
                     amplitude *= persistence;
@@ -91,17 +91,25 @@ public class MeshGenerator : MonoBehaviour
                     minNoiseHeight = y;
                 }
 
-                int arrayY = (int)((float)(z-25) / levelGenerate.blockSize);
-                int arrayX = (int)((float)(x-25) / levelGenerate.blockSize);
+                int arrayY = (int)((float)(z - 50) / levelGenerate.blockSize);
+                int arrayX = (int)((float)(x - 50) / levelGenerate.blockSize);
 
                 if (arrayX < levelGenerate.arraySize && arrayY < levelGenerate.arraySize && arrayX >= 0 && arrayY >= 0)
                 {
                     if (levelArray[arrayX, arrayY] == 1)
                     {
-                        y *= 0.1f;
-                    }
-                }
+                        //((float)(z - 25) / levelGenerate.blockSize) / (float)arrayY)
 
+                        //float yMult = Mathf.Abs((float)(z - 25) / levelGenerate.blockSize - (float)arrayY - 0.5f);
+
+                        //float xMult = Mathf.Abs((float)(x - 25) / levelGenerate.blockSize - (float)arrayX - 0.5f);
+
+                        y *= 0.1f;
+                        //y -= 0.2f;
+                    }
+                    y *= 0.1f;
+                }
+                
                 vertices[i] = new Vector3(x, y, z);
 
                 uv[i] = new Vector2((float)x / xSize, (float)z / zSize);
@@ -149,8 +157,8 @@ public class MeshGenerator : MonoBehaviour
         {
             for (int x = 0; x < xSize; x++)
             {
-                int arrayY = (int)((float)(z - 25) / levelGenerate.blockSize);
-                int arrayX = (int)((float)(x - 25) / levelGenerate.blockSize);
+                int arrayY = (int)((float)(z - 50) / levelGenerate.blockSize);
+                int arrayX = (int)((float)(x - 50) / levelGenerate.blockSize);
                 
                 if (arrayX < levelGenerate.arraySize && arrayY < levelGenerate.arraySize && arrayX >= 0 && arrayY >= 0)
                 {

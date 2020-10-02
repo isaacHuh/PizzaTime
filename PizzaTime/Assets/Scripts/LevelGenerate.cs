@@ -8,7 +8,7 @@ public class LevelGenerate : MonoBehaviour
     public int arraySize = 10;
     public int[,] levelArray;
 
-    public GameObject block;
+    public List<GameObject> blocks;
     public float blockSize = 5;
 
     public List<Vector2> openSpots = new List<Vector2>();
@@ -18,12 +18,12 @@ public class LevelGenerate : MonoBehaviour
         LevelGenerate.level++;
         levelArray = new int[arraySize, arraySize];
 
-        while (openSpots.Count < (arraySize * arraySize)/4)
+        while (openSpots.Count < (arraySize * arraySize)/2)
         {
             CreateLevel();
         }
 
-        //CreateMap();
+        CreateMap();
     }
 
     // Start is called before the first frame update
@@ -121,13 +121,20 @@ public class LevelGenerate : MonoBehaviour
             {
                 if (levelArray[i, j] != 1)
                 {
-                    Instantiate(block, new Vector3(i * blockSize, 0, j * blockSize), Quaternion.identity,transform);
+                    if (levelArray[i, Mathf.Clamp(j + 1, 0, arraySize - 1)] == 1 || 
+                        levelArray[i, Mathf.Clamp(j - 1, 0, arraySize - 1)] == 1 ||
+                        levelArray[Mathf.Clamp(i + 1, 0, arraySize - 1), j] == 1 ||
+                        levelArray[Mathf.Clamp(i - 1, 0, arraySize - 1), j] == 1) {
+
+                        Quaternion angle = Quaternion.Euler(0, 90 * Random.Range(0, 4), 0);
+                        Instantiate(blocks[Random.Range(0, blocks.Count)], transform.position + new Vector3(i * blockSize, -1.1f, j * blockSize), angle, transform);
+                    }
                 }
             }
         }
 
         //create outer layer
-
+        /*
         for (int i = 0; i < arraySize + 1; i++)
         {
             Instantiate(block, new Vector3(i * blockSize, 0, -1 * blockSize), Quaternion.identity, transform);
@@ -136,5 +143,6 @@ public class LevelGenerate : MonoBehaviour
             Instantiate(block, new Vector3(i * blockSize, 0, (arraySize + 1) * blockSize), Quaternion.identity, transform);
             Instantiate(block, new Vector3((arraySize + 1) * blockSize, 0, i * blockSize), Quaternion.identity, transform);
         }
+        */
     }
 }

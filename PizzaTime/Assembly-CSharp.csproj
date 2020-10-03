@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\LevelGenerate.cs" />
     <Compile Include="Assets\Scripts\MeshGenerator.cs" />
+    <Compile Include="Assets\Scripts\Node.cs" />
     <Compile Include="Assets\Scripts\camera_control.cs" />
     <Compile Include="Assets\Stylizer\Resources\Scripts\Palette.cs" />
     <Compile Include="Assets\Stylizer\Resources\Scripts\Pattern.cs" />

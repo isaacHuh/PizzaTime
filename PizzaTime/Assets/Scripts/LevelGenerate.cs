@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class LevelGenerate : MonoBehaviour
@@ -7,16 +8,23 @@ public class LevelGenerate : MonoBehaviour
     public static int level = 0;
     public int arraySize = 10;
     public int[,] levelArray;
+    public Node[,] nodeArray;
 
     public List<GameObject> blocks;
+    public GameObject node;
     public float blockSize = 5;
 
     public List<Vector2> openSpots = new List<Vector2>();
+
+    public Vector2Int startPos = new Vector2Int();
+    public Vector2Int endPos = new Vector2Int();
+
 
     private void Awake()
     {
         LevelGenerate.level++;
         levelArray = new int[arraySize, arraySize];
+        nodeArray = new Node[arraySize, arraySize];
 
         while (openSpots.Count < (arraySize * arraySize)/2)
         {
@@ -44,6 +52,32 @@ public class LevelGenerate : MonoBehaviour
         //createEnemies(LevelGeneration.level);
 
         //createEnd();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P)) {
+            List<Node> path = FindPath(startPos, endPos);
+            for (int i = 0; i < arraySize; i++)
+            {
+                for (int j = 0; j < arraySize; j++)
+                {
+                    if (nodeArray[i, j] == null) {
+                        continue;
+                    }
+                    Vector3 pos = nodeArray[i, j].transform.localPosition;
+                    pos.y = 0;
+                    nodeArray[i, j].transform.localPosition = pos;
+                }
+            }
+
+            foreach (Node obj in path) {
+                Vector3 pos = obj.transform.localPosition;
+                pos.y = -5;
+                obj.transform.localPosition = pos;
+            }
+        }
+    
     }
 
 
@@ -115,6 +149,7 @@ public class LevelGenerate : MonoBehaviour
 
     private void CreateMap()
     {
+        //create buildings
         for (int i = 0; i < arraySize; i++)
         {
             for (int j = 0; j < arraySize; j++)
@@ -133,16 +168,123 @@ public class LevelGenerate : MonoBehaviour
             }
         }
 
-        //create outer layer
-        /*
-        for (int i = 0; i < arraySize + 1; i++)
+        //create nodes
+        for (int i = 0; i < arraySize; i++)
         {
-            Instantiate(block, new Vector3(i * blockSize, 0, -1 * blockSize), Quaternion.identity, transform);
-            Instantiate(block, new Vector3(-1 * blockSize, 0, i * blockSize), Quaternion.identity, transform);
-
-            Instantiate(block, new Vector3(i * blockSize, 0, (arraySize + 1) * blockSize), Quaternion.identity, transform);
-            Instantiate(block, new Vector3((arraySize + 1) * blockSize, 0, i * blockSize), Quaternion.identity, transform);
+            for (int j = 0; j < arraySize; j++)
+            {
+                nodeArray[i, j] = null;
+                if (levelArray[i, j] == 1)
+                {
+                    GameObject newNode = Instantiate(node, transform.position + new Vector3(i * blockSize, -1.1f, j * blockSize), Quaternion.identity, transform);
+                    newNode.GetComponent<Node>().arrayPos = new Vector2Int(i,j);
+                    nodeArray[i, j] = newNode.GetComponent<Node>();
+                }
+            }
         }
-        */
+
+        //assign adj nodes
+        for (int i = 0; i < arraySize; i++)
+        {
+            for (int j = 0; j < arraySize; j++)
+            {
+                if (nodeArray[i, j] == null) {
+                    continue;
+                }
+
+                Node currNode = nodeArray[i, j];
+
+                if (i - 1 >= 0)
+                {
+                    if (nodeArray[i - 1, j] != null)
+                    {
+                        currNode.adjNodes.Add(nodeArray[i - 1, j]);
+                    }
+                }
+                if (i + 1 < arraySize)
+                {
+                    if (nodeArray[i + 1, j] != null)
+                    {
+                        currNode.adjNodes.Add(nodeArray[i + 1, j]);
+                    }
+                }
+                if (j - 1 >= 0)
+                {
+                    if (nodeArray[i, j - 1] != null)
+                    {
+                        currNode.adjNodes.Add(nodeArray[i, j - 1]);
+                    }
+                }
+                if (j + 1 < arraySize)
+                {
+                    if (nodeArray[i, j + 1] != null)
+                    {
+                        currNode.adjNodes.Add(nodeArray[i, j + 1]);
+                    }
+                }
+
+            }
+        }
+    }
+
+    public List<Node> FindPath(Vector2Int startPos, Vector2Int endPos) {
+        //reset nodes
+        for (int i = 0; i < arraySize; i++)
+        {
+            for (int j = 0; j < arraySize; j++)
+            {
+                if (nodeArray[i, j] == null)
+                {
+                    continue;
+                }
+                Node resetNode = nodeArray[i, j];
+                resetNode.pathWeight = -1;
+                resetNode.parentNode = null;
+            }
+        }
+
+        Node startNode = nodeArray[startPos[0], startPos[1]];
+        startNode.pathWeight = 0;
+        Node endNode = nodeArray[endPos[0], endPos[1]];
+
+        List<Node> queuedNodes = new List<Node>();
+        queuedNodes.Add(startNode);
+
+        // calculate path weight of each node
+        while (queuedNodes.Count > 0) {
+            if (queuedNodes[0] == endNode) {
+                queuedNodes.RemoveAt(0);
+                break;
+            }
+
+            Node currNode = queuedNodes[0];
+            queuedNodes.RemoveAt(0);
+
+            foreach (Node adjNode in currNode.adjNodes) {
+                if (adjNode.pathWeight == -1 || currNode.pathWeight + currNode.nodeWeight < adjNode.pathWeight) {
+                    adjNode.pathWeight = currNode.pathWeight + currNode.nodeWeight;
+                    adjNode.parentNode = currNode;
+
+
+                    queuedNodes.Add(adjNode);
+                }
+            }
+        }
+
+        List<Node> path = new List<Node>();
+        Node pathAdd = endNode;
+
+        // create path list by tracing back
+        while (pathAdd != null) {
+            path.Insert(0, pathAdd);
+            if (pathAdd == startNode) {
+                pathAdd = null;
+                continue;
+            }
+
+            pathAdd = pathAdd.parentNode;
+        }
+
+        return path;
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class LevelGenerate : MonoBehaviour
+public class LevelControl : MonoBehaviour
 {
     public static int level = 0;
     public int arraySize = 10;
@@ -19,12 +19,14 @@ public class LevelGenerate : MonoBehaviour
     public Vector2Int startPos = new Vector2Int();
     public Vector2Int endPos = new Vector2Int();
 
-
+    public GameObject player;
     private void Awake()
     {
-        LevelGenerate.level++;
+        LevelControl.level++;
         levelArray = new int[arraySize, arraySize];
         nodeArray = new Node[arraySize, arraySize];
+
+        player.transform.position = new Vector3((int)(arraySize/2 * blockSize), 5, (int)(arraySize/2) * blockSize);
 
         while (openSpots.Count < (arraySize * arraySize)/2)
         {
@@ -56,6 +58,7 @@ public class LevelGenerate : MonoBehaviour
 
     private void Update()
     {
+        // for debugging
         if (Input.GetKeyDown(KeyCode.P)) {
             List<Node> path = FindPath(startPos, endPos);
             for (int i = 0; i < arraySize; i++)
@@ -78,6 +81,29 @@ public class LevelGenerate : MonoBehaviour
             }
         }
     
+    }
+
+    public void DisplayPath(List<Node> path) {
+        for (int i = 0; i < arraySize; i++)
+        {
+            for (int j = 0; j < arraySize; j++)
+            {
+                if (nodeArray[i, j] == null)
+                {
+                    continue;
+                }
+                Vector3 pos = nodeArray[i, j].transform.localPosition;
+                pos.y = 0;
+                nodeArray[i, j].transform.localPosition = pos;
+            }
+        }
+
+        foreach (Node obj in path)
+        {
+            Vector3 pos = obj.transform.localPosition;
+            pos.y = -5;
+            obj.transform.localPosition = pos;
+        }
     }
 
 
@@ -244,6 +270,9 @@ public class LevelGenerate : MonoBehaviour
         }
 
         Node startNode = nodeArray[startPos[0], startPos[1]];
+        if (startNode == null) {
+            return new List<Node>();
+        }
         startNode.pathWeight = 0;
         Node endNode = nodeArray[endPos[0], endPos[1]];
 

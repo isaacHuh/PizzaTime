@@ -21,15 +21,15 @@ public class MeshGenerator : MonoBehaviour
 
     public int xSize = 20;
     public int zSize = 20;
-    public LevelGenerate levelGenerate;
+    public LevelControl levelControl;
     public int[,] levelArray;
 
     // Start is called before the first frame update
     void Start()
     {
-        levelArray = levelGenerate.GetLevelArray();
-        xSize = levelGenerate.arraySize * (int)levelGenerate.blockSize + 100;
-        zSize = levelGenerate.arraySize * (int)levelGenerate.blockSize + 100;
+        levelArray = levelControl.GetLevelArray();
+        xSize = levelControl.arraySize * (int)levelControl.blockSize + 100;
+        zSize = levelControl.arraySize * (int)levelControl.blockSize + 100;
 
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
@@ -91,18 +91,18 @@ public class MeshGenerator : MonoBehaviour
                     minNoiseHeight = y;
                 }
 
-                int arrayY = (int)((float)(z - 50) / levelGenerate.blockSize);
-                int arrayX = (int)((float)(x - 50) / levelGenerate.blockSize);
+                int arrayY = (int)((float)(z - 50) / levelControl.blockSize);
+                int arrayX = (int)((float)(x - 50) / levelControl.blockSize);
 
-                if (arrayX < levelGenerate.arraySize && arrayY < levelGenerate.arraySize && arrayX >= 0 && arrayY >= 0)
+                if (arrayX < levelControl.arraySize && arrayY < levelControl.arraySize && arrayX >= 0 && arrayY >= 0)
                 {
                     if (levelArray[arrayX, arrayY] == 1)
                     {
-                        //((float)(z - 25) / levelGenerate.blockSize) / (float)arrayY)
+                        //((float)(z - 25) / levelControl.blockSize) / (float)arrayY)
 
-                        //float yMult = Mathf.Abs((float)(z - 25) / levelGenerate.blockSize - (float)arrayY - 0.5f);
+                        //float yMult = Mathf.Abs((float)(z - 25) / levelControl.blockSize - (float)arrayY - 0.5f);
 
-                        //float xMult = Mathf.Abs((float)(x - 25) / levelGenerate.blockSize - (float)arrayX - 0.5f);
+                        //float xMult = Mathf.Abs((float)(x - 25) / levelControl.blockSize - (float)arrayX - 0.5f);
 
                         y *= 0.1f;
                         //y -= 0.2f;
@@ -157,10 +157,10 @@ public class MeshGenerator : MonoBehaviour
         {
             for (int x = 0; x < xSize; x++)
             {
-                int arrayY = (int)((float)(z - 50) / levelGenerate.blockSize);
-                int arrayX = (int)((float)(x - 50) / levelGenerate.blockSize);
+                int arrayY = (int)((float)(z - 50) / levelControl.blockSize);
+                int arrayX = (int)((float)(x - 50) / levelControl.blockSize);
                 
-                if (arrayX < levelGenerate.arraySize && arrayY < levelGenerate.arraySize && arrayX >= 0 && arrayY >= 0)
+                if (arrayX < levelControl.arraySize && arrayY < levelControl.arraySize && arrayX >= 0 && arrayY >= 0)
                 {
                     if (levelArray[arrayX, arrayY] == 1)
                     {

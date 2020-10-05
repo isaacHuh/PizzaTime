@@ -63,7 +63,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\LevelGenerate.cs" />
+    <Compile Include="Assets\Scripts\ArrowControl.cs" />
+    <Compile Include="Assets\Scripts\CarLevelController.cs" />
+    <Compile Include="Assets\Scripts\LevelControl.cs" />
     <Compile Include="Assets\Scripts\MeshGenerator.cs" />
     <Compile Include="Assets\Scripts\Node.cs" />
     <Compile Include="Assets\Scripts\camera_control.cs" />

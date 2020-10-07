@@ -25,7 +25,7 @@ MonoBehaviour:
   - {r: 0.97328377, g: 0.42762512, b: 0.5047944, a: 1}
   Texture: {fileID: 28200839914353616}
   HasTexture: 1
-  IsDirty: 0
+  IsDirty: 1
 --- !u!28 &28200839914353616
 Texture2D:
   m_ObjectHideFlags: 0
@@ -45,6 +45,8 @@ Texture2D:
   m_TextureFormat: 3
   m_MipCount: 1
   m_IsReadable: 1
+  m_IgnoreMasterTextureLimit: 0
+  m_IsPreProcessed: 0
   m_StreamingMipmaps: 0
   m_StreamingMipmapsPriority: 0
   m_AlphaIsTransparency: 0

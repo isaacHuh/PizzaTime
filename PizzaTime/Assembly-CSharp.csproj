@@ -65,10 +65,12 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\ArrowControl.cs" />
     <Compile Include="Assets\Scripts\CarLevelController.cs" />
+    <Compile Include="Assets\Scripts\Car_Control.cs" />
     <Compile Include="Assets\Scripts\LevelControl.cs" />
     <Compile Include="Assets\Scripts\MeshGenerator.cs" />
     <Compile Include="Assets\Scripts\Node.cs" />
     <Compile Include="Assets\Scripts\camera_control.cs" />
+    <Compile Include="Assets\Scripts\upright.cs" />
     <Compile Include="Assets\Stylizer\Resources\Scripts\Palette.cs" />
     <Compile Include="Assets\Stylizer\Resources\Scripts\Pattern.cs" />
     <Compile Include="Assets\Stylizer\Resources\Scripts\Pixelation.cs" />

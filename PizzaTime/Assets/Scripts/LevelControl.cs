@@ -173,6 +173,21 @@ public class LevelControl : MonoBehaviour
         ChooseType(x, y + 1);
     }
 
+    private Vector2Int GetDeliveryPos(int i, int j) {
+        if (levelArray[i, Mathf.Clamp(j + 1, 0, arraySize - 1)] == 1) {
+            return new Vector2Int(i, Mathf.Clamp(j + 1, 0, arraySize - 1));
+        }
+        if (levelArray[i, Mathf.Clamp(j - 1, 0, arraySize - 1)] == 1) {
+            return new Vector2Int(i, Mathf.Clamp(j - 1, 0, arraySize - 1));
+        }
+        if (levelArray[Mathf.Clamp(i + 1, 0, arraySize - 1), j] == 1) {
+            return new Vector2Int(Mathf.Clamp(i + 1, 0, arraySize - 1), j);
+        }
+        if (levelArray[Mathf.Clamp(i - 1, 0, arraySize - 1), j] == 1) {
+            return new Vector2Int(Mathf.Clamp(i - 1, 0, arraySize - 1), j);
+        }
+        return new Vector2Int(-1,-1);
+    }
     private void CreateMap()
     {
         //create buildings
@@ -182,13 +197,13 @@ public class LevelControl : MonoBehaviour
             {
                 if (levelArray[i, j] != 1)
                 {
-                    if (levelArray[i, Mathf.Clamp(j + 1, 0, arraySize - 1)] == 1 || 
-                        levelArray[i, Mathf.Clamp(j - 1, 0, arraySize - 1)] == 1 ||
-                        levelArray[Mathf.Clamp(i + 1, 0, arraySize - 1), j] == 1 ||
-                        levelArray[Mathf.Clamp(i - 1, 0, arraySize - 1), j] == 1) {
+                    Vector2Int deliveryPos = GetDeliveryPos(i, j);
+                    if (deliveryPos[0] != -1) {
 
                         Quaternion angle = Quaternion.Euler(0, 90 * Random.Range(0, 4), 0);
-                        Instantiate(blocks[Random.Range(0, blocks.Count)], transform.position + new Vector3(i * blockSize, -1.1f, j * blockSize), angle, transform);
+                        GameObject building = Instantiate(blocks[Random.Range(0, blocks.Count)], transform.position + new Vector3(i * blockSize, -1.1f, j * blockSize), angle, transform);
+                        building.GetComponent<BuildingControl>().deliveryPos = new Vector3(deliveryPos[0] * blockSize, -1.1f, deliveryPos[1] * blockSize);
+
                     }
                 }
             }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[ExecuteInEditMode]
+//[ExecuteInEditMode]
 public class MeshGenerator : MonoBehaviour
 {
 
@@ -17,18 +17,19 @@ public class MeshGenerator : MonoBehaviour
     Vector2[] uv;
     Vector4[] tangents;
     int[] triangles;
+    int[] roadTriangles;
 
     public int xSize = 20;
     public int zSize = 20;
-    public LevelGenerate levelGenerate;
+    public LevelControl levelControl;
     public int[,] levelArray;
 
     // Start is called before the first frame update
     void Start()
     {
-        levelArray = levelGenerate.GetLevelArray();
-        xSize = levelGenerate.arraySize * (int)levelGenerate.blockSize + 50;
-        zSize = levelGenerate.arraySize * (int)levelGenerate.blockSize + 50;
+        levelArray = levelControl.GetLevelArray();
+        xSize = levelControl.arraySize * (int)levelControl.blockSize + 100;
+        zSize = levelControl.arraySize * (int)levelControl.blockSize + 100;
 
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
@@ -63,7 +64,6 @@ public class MeshGenerator : MonoBehaviour
         float maxNoiseHeight = float.MinValue;
         float minNoiseHeight = float.MaxValue;
 
-
         for (int i = 0, z = 0; z <= zSize; z++)
         {
             for (int x = 0; x <= xSize; x++)
@@ -75,7 +75,7 @@ public class MeshGenerator : MonoBehaviour
 
                 for (int j = 0; j < octaves; j++)
                 {
-                    float perlinVal = Mathf.PerlinNoise(x / scale * frequency, z / scale * frequency) * 2 - 1;
+                    float perlinVal = Mathf.PerlinNoise(x / scale * frequency, z / scale * frequency) * 0.5f - 0.25f;
                     y += perlinVal * amplitude;
 
                     amplitude *= persistence;
@@ -91,17 +91,25 @@ public class MeshGenerator : MonoBehaviour
                     minNoiseHeight = y;
                 }
 
-                int arrayY = (int)((float)(z-25) / levelGenerate.blockSize);
-                int arrayX = (int)((float)(x-25) / levelGenerate.blockSize);
+                int arrayY = (int)((float)(z - 50) / levelControl.blockSize);
+                int arrayX = (int)((float)(x - 50) / levelControl.blockSize);
 
-                if (arrayX < levelGenerate.arraySize && arrayY < levelGenerate.arraySize && arrayX >= 0 && arrayY >= 0)
+                if (arrayX < levelControl.arraySize && arrayY < levelControl.arraySize && arrayX >= 0 && arrayY >= 0)
                 {
                     if (levelArray[arrayX, arrayY] == 1)
                     {
-                        y *= 0.1f;
-                    }
-                }
+                        //((float)(z - 25) / levelControl.blockSize) / (float)arrayY)
 
+                        //float yMult = Mathf.Abs((float)(z - 25) / levelControl.blockSize - (float)arrayY - 0.5f);
+
+                        //float xMult = Mathf.Abs((float)(x - 25) / levelControl.blockSize - (float)arrayX - 0.5f);
+
+                        y *= 0.1f;
+                        //y -= 0.2f;
+                    }
+                    y *= 0.1f;
+                }
+                
                 vertices[i] = new Vector3(x, y, z);
 
                 uv[i] = new Vector2((float)x / xSize, (float)z / zSize);
@@ -135,7 +143,13 @@ public class MeshGenerator : MonoBehaviour
         mesh.tangents = tangents;
         */
 
-        triangles = new int[xSize * zSize * 6];
+        //int roadTriangleCount = roadVerticesCount*6;
+        //Debug.Log(roadTriangleCount);
+        roadTriangles = new int[(xSize * zSize * 6)];
+
+        //Debug.Log("verticies: " + vertices.Length);
+        //Debug.Log(xSize * zSize);
+        triangles = new int[(xSize * zSize * 6)];
 
         int vert = 0;
         int tris = 0;
@@ -143,6 +157,27 @@ public class MeshGenerator : MonoBehaviour
         {
             for (int x = 0; x < xSize; x++)
             {
+                int arrayY = (int)((float)(z - 50) / levelControl.blockSize);
+                int arrayX = (int)((float)(x - 50) / levelControl.blockSize);
+                
+                if (arrayX < levelControl.arraySize && arrayY < levelControl.arraySize && arrayX >= 0 && arrayY >= 0)
+                {
+                    if (levelArray[arrayX, arrayY] == 1)
+                    {
+                        
+                        roadTriangles[0 + tris] = vert + 0;
+                        roadTriangles[1 + tris] = vert + xSize + 1;
+                        roadTriangles[2 + tris] = vert + 1;
+                        roadTriangles[3 + tris] = vert + 1;
+                        roadTriangles[4 + tris] = vert + xSize + 1;
+                        roadTriangles[5 + tris] = vert + xSize + 2;
+
+                        vert++;
+                        tris += 6;
+                        continue;
+                    }
+                }
+
                 triangles[0 + tris] = vert + 0;
                 triangles[1 + tris] = vert + xSize + 1;
                 triangles[2 + tris] = vert + 1;
@@ -154,6 +189,7 @@ public class MeshGenerator : MonoBehaviour
                 tris += 6;
             }
             vert++;
+
         }
         /*
         for(int i = 0; i < vertices.Length; i++)
@@ -172,11 +208,15 @@ public class MeshGenerator : MonoBehaviour
     void UpdateMesh()
     {
         mesh.Clear();
+        mesh.subMeshCount = 2;
 
         mesh.vertices = vertices;
         mesh.uv = uv;
         mesh.tangents = tangents;
-        mesh.triangles = triangles;
+        //mesh.triangles = triangles;
+        mesh.SetTriangles(triangles, 0);
+        mesh.SetTriangles(roadTriangles, 1);
+        //mesh.SetTriangles(triDex[1], 1);
         mesh.RecalculateNormals();
         mesh.RecalculateBounds();
         MeshCollider meshCollider = gameObject.GetComponent<MeshCollider>();

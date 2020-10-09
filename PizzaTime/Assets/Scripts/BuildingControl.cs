@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BuildingControl : MonoBehaviour
 {
-    public Vector3 deliveryPos;
+    public Vector2Int deliveryPos;
     // Start is called before the first frame update
     void Start()
     {

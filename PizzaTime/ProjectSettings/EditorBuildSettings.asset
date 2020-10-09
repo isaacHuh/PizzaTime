@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/UI/Title Screen Version 1.unity
+    guid: 3a846bd6ee336ac499a7eccddeb8676f
+  - enabled: 1
+    path: Assets/UI/RoccoScene.unity
+    guid: cfadf4c37ebeebc408fb676ebd1af090
   m_configObjects: {}

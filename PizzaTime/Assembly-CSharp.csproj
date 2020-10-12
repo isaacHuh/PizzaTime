@@ -63,13 +63,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Models\PathCreator\Examples\Scripts\GeneratePathExample.cs" />
+    <Compile Include="Assets\Models\PathCreator\Examples\Scripts\PathFollower.cs" />
+    <Compile Include="Assets\Models\PathCreator\Examples\Scripts\PathPlacer.cs" />
+    <Compile Include="Assets\Models\PathCreator\Examples\Scripts\PathSceneTool.cs" />
+    <Compile Include="Assets\Models\PathCreator\Examples\Scripts\PathSpawner.cs" />
+    <Compile Include="Assets\Models\PathCreator\Examples\Scripts\RoadMeshCreator.cs" />
     <Compile Include="Assets\Scripts\ArrowControl.cs" />
     <Compile Include="Assets\Scripts\BuildingControl.cs" />
+    <Compile Include="Assets\Scripts\CarAnimation.cs" />
     <Compile Include="Assets\Scripts\CarLevelController.cs" />
     <Compile Include="Assets\Scripts\Car_Control.cs" />
+    <Compile Include="Assets\Scripts\LevelClickController.cs" />
     <Compile Include="Assets\Scripts\LevelControl.cs" />
     <Compile Include="Assets\Scripts\MeshGenerator.cs" />
     <Compile Include="Assets\Scripts\Node.cs" />
+    <Compile Include="Assets\Scripts\SelectionManager.cs" />
     <Compile Include="Assets\Scripts\UI.cs" />
     <Compile Include="Assets\Scripts\camera_control.cs" />
     <Compile Include="Assets\Scripts\upright.cs" />
@@ -157,6 +166,7 @@
     <None Include="Assets\Stylizer\Resources\Scripts\UnityGrain\Shaders\NoiseAndGrain_Grain.shader" />
     <None Include="Assets\Stylizer\Resources\Shaders\Standard Dithered - Soft Lights.shader" />
     <None Include="Assets\Stylizer\Resources\Scripts\UnityGrain\Shaders\Bloom_Grain.cginc" />
+    <None Include="Assets\Models\Polygonal Particles\Assets\Shaders\GradientBackgroundShader.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\Stylizer\Resources\Shaders\Standard Dithered Transparent - Simple Lights.shader" />
     <None Include="Assets\Stylizer\Resources\Scripts\UnityGrain\Shaders\GrainGen_Grain.shader" />
@@ -744,6 +754,14 @@
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
       <Project>{D274AF75-0218-F720-5AFE-CB08DCFC7C76}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
+    <ProjectReference Include="PathCreator.csproj">
+      <Project>{7812D8DE-1192-9A59-A302-515EA47651C8}</Project>
+      <Name>PathCreator</Name>
+    </ProjectReference>
+    <ProjectReference Include="PathCreatorEditor.csproj">
+      <Project>{1A1359D9-283F-6A32-07FB-5CC54CAEAD7F}</Project>
+      <Name>PathCreatorEditor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

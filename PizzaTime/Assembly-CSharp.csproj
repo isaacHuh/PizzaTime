@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\ArrowControl.cs" />
+    <Compile Include="Assets\Scripts\BuildingControl.cs" />
     <Compile Include="Assets\Scripts\CarLevelController.cs" />
     <Compile Include="Assets\Scripts\Car_Control.cs" />
     <Compile Include="Assets\Scripts\LevelControl.cs" />

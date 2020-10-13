@@ -20,6 +20,7 @@ public class LevelControl : MonoBehaviour
     public Vector2Int endPos = new Vector2Int();
 
     public GameObject player;
+    public GameObject pedestrian;
     private void Awake()
     {
         LevelControl.level++;
@@ -208,6 +209,56 @@ public class LevelControl : MonoBehaviour
                 }
             }
         }
+
+
+        //create pedestrians
+        for (int i = 0; i < arraySize; i++)
+        {
+            for (int j = 0; j < arraySize; j++)
+            {
+                if (i == (int)(arraySize / 2) && j == (int)(arraySize / 2)) {
+                    continue;
+                }
+
+                if (levelArray[i, j] == 1)
+                {
+                    int spawn = Random.Range(-12, 6);
+                    if (spawn > 0)
+                    {
+                        // generate positions of new peoples
+                        Vector3[] spawnPos = new Vector3[spawn];
+                        for (int k = 0; k < spawn; k++) {
+                            bool validPos = true;
+
+                            Vector3 newPos = new Vector3((i * blockSize) + Random.Range(0,blockSize/2 - 1), -0.9f, (j * blockSize) + Random.Range(0, blockSize / 2 - 1));
+                            for (int l = 0; l < k; l++) {
+                                if (spawnPos[l] == newPos) {
+                                    validPos = false;
+                                    break;
+                                }
+                            }
+
+                            if (validPos)
+                            {
+                                spawnPos[k] = newPos;
+                            }
+                            else {
+                                k--;
+                            }
+
+                        }
+
+                        //spawn
+                        for (int k = 0; k < spawn; k++)
+                        {
+                            GameObject person = Instantiate(pedestrian, transform.position + spawnPos[k], Quaternion.identity, transform);
+                        }
+
+                    }
+                }
+            }
+        }
+
 
         //create nodes
         for (int i = 0; i < arraySize; i++)

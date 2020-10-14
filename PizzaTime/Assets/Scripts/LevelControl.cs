@@ -20,6 +20,7 @@ public class LevelControl : MonoBehaviour
     public Vector2Int endPos = new Vector2Int();
 
     public GameObject player;
+    public GameObject pedestrian;
     private void Awake()
     {
         LevelControl.level++;
@@ -173,6 +174,21 @@ public class LevelControl : MonoBehaviour
         ChooseType(x, y + 1);
     }
 
+    private Vector2Int GetDeliveryPos(int i, int j) {
+        if (levelArray[i, Mathf.Clamp(j + 1, 0, arraySize - 1)] == 1) {
+            return new Vector2Int(i, Mathf.Clamp(j + 1, 0, arraySize - 1));
+        }
+        if (levelArray[i, Mathf.Clamp(j - 1, 0, arraySize - 1)] == 1) {
+            return new Vector2Int(i, Mathf.Clamp(j - 1, 0, arraySize - 1));
+        }
+        if (levelArray[Mathf.Clamp(i + 1, 0, arraySize - 1), j] == 1) {
+            return new Vector2Int(Mathf.Clamp(i + 1, 0, arraySize - 1), j);
+        }
+        if (levelArray[Mathf.Clamp(i - 1, 0, arraySize - 1), j] == 1) {
+            return new Vector2Int(Mathf.Clamp(i - 1, 0, arraySize - 1), j);
+        }
+        return new Vector2Int(-1,-1);
+    }
     private void CreateMap()
     {
         //create buildings
@@ -182,17 +198,67 @@ public class LevelControl : MonoBehaviour
             {
                 if (levelArray[i, j] != 1)
                 {
-                    if (levelArray[i, Mathf.Clamp(j + 1, 0, arraySize - 1)] == 1 || 
-                        levelArray[i, Mathf.Clamp(j - 1, 0, arraySize - 1)] == 1 ||
-                        levelArray[Mathf.Clamp(i + 1, 0, arraySize - 1), j] == 1 ||
-                        levelArray[Mathf.Clamp(i - 1, 0, arraySize - 1), j] == 1) {
+                    Vector2Int deliveryPos = GetDeliveryPos(i, j);
+                    if (deliveryPos[0] != -1) {
 
                         Quaternion angle = Quaternion.Euler(0, 90 * Random.Range(0, 4), 0);
-                        Instantiate(blocks[Random.Range(0, blocks.Count)], transform.position + new Vector3(i * blockSize, -1.1f, j * blockSize), angle, transform);
+                        GameObject building = Instantiate(blocks[Random.Range(0, blocks.Count)], transform.position + new Vector3(i * blockSize, -1.1f, j * blockSize), angle, transform);
+                        building.GetComponent<BuildingControl>().deliveryPos = deliveryPos;
+
                     }
                 }
             }
         }
+
+
+        //create pedestrians
+        for (int i = 0; i < arraySize; i++)
+        {
+            for (int j = 0; j < arraySize; j++)
+            {
+                if (i == (int)(arraySize / 2) && j == (int)(arraySize / 2)) {
+                    continue;
+                }
+
+                if (levelArray[i, j] == 1)
+                {
+                    int spawn = Random.Range(-12, 6);
+                    if (spawn > 0)
+                    {
+                        // generate positions of new peoples
+                        Vector3[] spawnPos = new Vector3[spawn];
+                        for (int k = 0; k < spawn; k++) {
+                            bool validPos = true;
+
+                            Vector3 newPos = new Vector3((i * blockSize) + Random.Range(0,blockSize/2 - 1), -0.9f, (j * blockSize) + Random.Range(0, blockSize / 2 - 1));
+                            for (int l = 0; l < k; l++) {
+                                if (spawnPos[l] == newPos) {
+                                    validPos = false;
+                                    break;
+                                }
+                            }
+
+                            if (validPos)
+                            {
+                                spawnPos[k] = newPos;
+                            }
+                            else {
+                                k--;
+                            }
+
+                        }
+
+                        //spawn
+                        for (int k = 0; k < spawn; k++)
+                        {
+                            GameObject person = Instantiate(pedestrian, transform.position + spawnPos[k], Quaternion.identity, transform);
+                        }
+
+                    }
+                }
+            }
+        }
+
 
         //create nodes
         for (int i = 0; i < arraySize; i++)

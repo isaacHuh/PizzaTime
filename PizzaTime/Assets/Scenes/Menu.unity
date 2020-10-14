@@ -438,6 +438,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelClick (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4658523688144973948, guid: c02f6c0bd07d73f4eb4e0d9103b17415,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4658523688577116008, guid: c02f6c0bd07d73f4eb4e0d9103b17415,
         type: 3}
       propertyPath: m_Mesh
@@ -1594,6 +1599,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelClick (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4658523688144973948, guid: c02f6c0bd07d73f4eb4e0d9103b17415,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4658523688577116008, guid: c02f6c0bd07d73f4eb4e0d9103b17415,
         type: 3}
       propertyPath: m_Mesh
@@ -1817,6 +1827,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LevelClick (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658523688144973948, guid: c02f6c0bd07d73f4eb4e0d9103b17415,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4658523688577116008, guid: c02f6c0bd07d73f4eb4e0d9103b17415,
         type: 3}
@@ -2310,6 +2325,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelClick (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4658523688144973948, guid: c02f6c0bd07d73f4eb4e0d9103b17415,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4658523688577116008, guid: c02f6c0bd07d73f4eb4e0d9103b17415,
         type: 3}
       propertyPath: m_Mesh
@@ -2748,6 +2768,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelClick (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4658523688144973948, guid: c02f6c0bd07d73f4eb4e0d9103b17415,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4658523688577116008, guid: c02f6c0bd07d73f4eb4e0d9103b17415,
         type: 3}
       propertyPath: m_Mesh
@@ -2781,7 +2806,22 @@ PrefabInstance:
     - target: {fileID: 4658523688577116010, guid: c02f6c0bd07d73f4eb4e0d9103b17415,
         type: 3}
       propertyPath: m_text
-      value: Song 2
+      value: Credits
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658523688577116010, guid: c02f6c0bd07d73f4eb4e0d9103b17415,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658523688577116010, guid: c02f6c0bd07d73f4eb4e0d9103b17415,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658523688577116010, guid: c02f6c0bd07d73f4eb4e0d9103b17415,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c02f6c0bd07d73f4eb4e0d9103b17415, type: 3}
@@ -2865,7 +2905,7 @@ PrefabInstance:
     - target: {fileID: 4658523688144973936, guid: c02f6c0bd07d73f4eb4e0d9103b17415,
         type: 3}
       propertyPath: sceneLink
-      value: Level1
+      value: IsaacScene
       objectReference: {fileID: 0}
     - target: {fileID: 4658523688144973938, guid: c02f6c0bd07d73f4eb4e0d9103b17415,
         type: 3}
@@ -2931,6 +2971,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658523688577116010, guid: c02f6c0bd07d73f4eb4e0d9103b17415,
+        type: 3}
+      propertyPath: m_text
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658523688577116010, guid: c02f6c0bd07d73f4eb4e0d9103b17415,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658523688577116010, guid: c02f6c0bd07d73f4eb4e0d9103b17415,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 4658523688577116010, guid: c02f6c0bd07d73f4eb4e0d9103b17415,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c02f6c0bd07d73f4eb4e0d9103b17415, type: 3}

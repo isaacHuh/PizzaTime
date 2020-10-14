@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/UI/RoccoScene.unity
     guid: cfadf4c37ebeebc408fb676ebd1af090
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 9d683b1bef8ac224081286cda0949086
+  - enabled: 1
+    path: Assets/Scenes/IsaacScene.unity
+    guid: fc18164b8845c104ca17aafe2715e9e4
   m_configObjects: {}

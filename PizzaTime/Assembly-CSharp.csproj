@@ -83,6 +83,7 @@
     <Compile Include="Assets\Scripts\SelectionManager.cs" />
     <Compile Include="Assets\Scripts\UI.cs" />
     <Compile Include="Assets\Scripts\camera_control.cs" />
+    <Compile Include="Assets\Scripts\carEffects.cs" />
     <Compile Include="Assets\Scripts\upright.cs" />
     <Compile Include="Assets\Stylizer\Resources\Scripts\Palette.cs" />
     <Compile Include="Assets\Stylizer\Resources\Scripts\Pattern.cs" />

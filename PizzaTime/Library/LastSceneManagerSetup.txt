@@ -1,5 +1,9 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/Menu.unity
+=======
+- path: Assets/UI/RoccoScene.unity
+>>>>>>> 9bfed30775725903ab090f6b19a2f43c6688c6b4
   isLoaded: 1
   isActive: 1
   isSubScene: 0

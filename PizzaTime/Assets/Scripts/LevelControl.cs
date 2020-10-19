@@ -274,7 +274,7 @@ public class LevelControl : MonoBehaviour
                     GameObject newNode = Instantiate(node, transform.position + new Vector3(i * blockSize, -1.1f, j * blockSize), Quaternion.identity, transform);
                     newNode.GetComponent<Node>().arrayPos = new Vector2Int(i,j);
                     nodeArray[i, j] = newNode.GetComponent<Node>();
-                }
+               }
             }
         }
 

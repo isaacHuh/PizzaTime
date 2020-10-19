@@ -16,9 +16,12 @@ public class carEffects : MonoBehaviour
     public AudioClip accelerate;
     public AudioClip deccelerate;
 
+    public GameObject skid;
+    [SerializeField] Transform[] skidPlaces = new Transform[4];
+    [SerializeField] ParticleSystem[] particles = new ParticleSystem[4];
+
     private Rigidbody rb;
-    private float currentSpeed = 0;
-    private float lastSpeed = 0;
+    private bool skidding = false;
 
     // Start is called before the first frame update
     void Start()
@@ -29,10 +32,9 @@ public class carEffects : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        lastSpeed = currentSpeed;
-        currentSpeed = rb.velocity.magnitude;
 
-        //engineSound(lastSpeed, currentSpeed);
+        engineSound();
+        skidStart();
 
         if (Input.GetKey(KeyCode.Space))
         {
@@ -41,6 +43,9 @@ public class carEffects : MonoBehaviour
 
             if (rb.velocity.magnitude > 0.1f)
             {
+                //smokeStart();
+                skidding = true;
+
                 if (!wheelFL.isPlaying)
                 {
                     wheelFL.Play();
@@ -52,6 +57,9 @@ public class carEffects : MonoBehaviour
             }
             else
             {
+                //smokeStop();
+                skidding = false;
+
                 wheelFL.Stop();
                 wheelFR.Stop();
                 wheelRL.Stop();
@@ -60,6 +68,9 @@ public class carEffects : MonoBehaviour
         }
         else
         {
+            //smokeStop();
+            skidding = false;
+
             brakeL.intensity = 0;
             brakeR.intensity = 0;
 
@@ -70,16 +81,68 @@ public class carEffects : MonoBehaviour
         }
     }
 
-    private void engineSound(float last, float current)
+    private void engineSound()
     {
-        if (current > last)
-        {
-            engine.clip = accelerate;
+        //Debug.Log(rb.velocity.magnitude);
 
+        if (rb.velocity.magnitude > 0.1f)
+        {
             if (!engine.isPlaying)
             {
                 engine.Play();
             }
+
+            if (Input.GetAxis("Vertical") != 0)
+            {
+                if (engine.pitch < 2.1f)
+                {
+                    engine.pitch += (rb.velocity.magnitude * .001f);
+                }
+                engine.clip = accelerate;
+            }
+            else
+            {
+                if (engine.pitch > 1)
+                {
+                    engine.pitch -= (rb.velocity.magnitude * .001f);
+                }
+                //engine.clip = deccelerate;
+            }
+        }
+        else
+        {
+            engine.pitch = 1;
+            engine.Stop();
+        }
+    }
+
+    private void skidStart()
+    {
+        if (skidding)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                Instantiate(skid, skidPlaces[i].position, Quaternion.identity);
+            }
+        }
+    }
+
+    private void smokeStart()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            if (!particles[i].isPlaying)
+            {
+                particles[i].Play();
+            }
+        }
+    }
+
+    private void smokeStop()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+                particles[i].Stop();
         }
     }
 }

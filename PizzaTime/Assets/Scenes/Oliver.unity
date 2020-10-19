@@ -727,6 +727,12 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 2116851383}
+    - target: {fileID: 4645288926692935010, guid: f18fb86bcd8ab0a49a98e2d99a145e43,
+        type: 3}
+      propertyPath: pedestrian
+      value: 
+      objectReference: {fileID: 1361999370303688814, guid: 7c617a488d7e9114d892ac12391451c8,
+        type: 3}
     - target: {fileID: 4645288926692935011, guid: f18fb86bcd8ab0a49a98e2d99a145e43,
         type: 3}
       propertyPath: m_Name

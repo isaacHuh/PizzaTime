@@ -36,7 +36,7 @@ public class Car_Control : MonoBehaviour
         friction = FL_collider.sidewaysFriction; // Get starting friction of tires
         spawn = transform.position; // Remember starting position and rotation
         rotation = transform.rotation;
-        
+
     }
 
     private void FixedUpdate()
@@ -61,7 +61,7 @@ public class Car_Control : MonoBehaviour
         FR_collider.motorTorque = -vAxis * horsePower;
         RL_collider.motorTorque = -vAxis * horsePower;
         RR_collider.motorTorque = -vAxis * horsePower;
-        
+
 
         if (brakeing) // If player is brakeing...
         {

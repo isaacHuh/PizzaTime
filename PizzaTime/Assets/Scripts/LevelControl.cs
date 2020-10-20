@@ -23,7 +23,7 @@ public class LevelControl : MonoBehaviour
     public GameObject pedestrian;
 
     public List<GameObject> buildings = new List<GameObject>();
-
+    
     private void Awake()
     {
         LevelControl.level++;
@@ -207,7 +207,7 @@ public class LevelControl : MonoBehaviour
                         Quaternion angle = Quaternion.Euler(0, 90 * Random.Range(0, 4), 0);
                         GameObject building = Instantiate(blocks[Random.Range(0, blocks.Count)], transform.position + new Vector3(i * blockSize, -1.1f, j * blockSize), angle, transform);
                         building.GetComponent<BuildingControl>().deliveryPos = deliveryPos;
-                        buildings.Add(building);
+                        buildings.Add(building); //store buiding in buildings List
                     }
                 }
             }
@@ -385,4 +385,5 @@ public class LevelControl : MonoBehaviour
 
         return path;
     }
+
 }

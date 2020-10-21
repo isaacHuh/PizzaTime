@@ -19,13 +19,15 @@ public class PizzaShop : MonoBehaviour
     void Start()
     {
         buildings = LevelControl.GetComponent<LevelControl>().buildings;
-    }
-        
+    }   
+
     void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.tag == "Player")
         {
+            freezeCarMovement(collider);    
             num_deliveries = random.Next(1, 3);
+            
             createDeliveryPositions();
         }
     }
@@ -47,12 +49,11 @@ public class PizzaShop : MonoBehaviour
         {
             int randomBuilding = random.Next(0, buildings.Count - 1);
             Vector2Int deliveryPos = buildings[randomBuilding].GetComponent<BuildingControl>().deliveryPos;
-            GameObject position = Instantiate(deliveryLocation, new Vector3(deliveryPos.x*10, 5, deliveryPos.y*10), Quaternion.identity);
-            if (deliveryPos != null)
+            if (!deliveryPositions.Contains(deliveryPos) && deliveryPos != null)
             {
+                GameObject position = Instantiate(deliveryLocation, new Vector3(deliveryPos.x * 10, 5, deliveryPos.y * 10), Quaternion.identity);
                 deliveryPositions.Add(deliveryPos);
             }
-            
         }
     }
 
@@ -68,5 +69,12 @@ public class PizzaShop : MonoBehaviour
             }
         }
         setPizzaShop();
+    }
+
+    void freezeCarMovement(Collider collider)
+    {
+        collider.transform.parent.gameObject.transform.parent.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        collider.transform.parent.gameObject.transform.parent.gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        collider.transform.parent.gameObject.transform.parent.gameObject.GetComponent<Rigidbody>().isKinematic = true;
     }
 }

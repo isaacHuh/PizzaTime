@@ -55,7 +55,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\ChooseDeliveries.cs" />
      <Compile Include="Assets\Prefabs\Models\PathCreator\Examples\Scripts\GeneratePathExample.cs" />
      <Compile Include="Assets\Prefabs\Models\PathCreator\Examples\Scripts\PathFollower.cs" />
      <Compile Include="Assets\Prefabs\Models\PathCreator\Examples\Scripts\PathPlacer.cs" />
@@ -125,6 +124,7 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
+     <Compile Include="Assets\UI\ChooseDeliveries.cs" />
      <Compile Include="Assets\UI\MainTitle.cs" />
      <Compile Include="Assets\UI\PizzaSelectCamera.cs" />
      <Compile Include="Assets\UI\PizzaShop.cs" />

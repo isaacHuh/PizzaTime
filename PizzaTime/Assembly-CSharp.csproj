@@ -76,10 +76,19 @@
     <Compile Include="Assets\Scripts\CarAnimation.cs" />
     <Compile Include="Assets\Scripts\CarLevelController.cs" />
     <Compile Include="Assets\Scripts\Car_Control.cs" />
+    <Compile Include="Assets\Scripts\CostAnimation.cs" />
     <Compile Include="Assets\Scripts\LevelClickController.cs" />
     <Compile Include="Assets\Scripts\LevelControl.cs" />
     <Compile Include="Assets\Scripts\MeshGenerator.cs" />
     <Compile Include="Assets\Scripts\Node.cs" />
+    <Compile Include="Assets\Scripts\Oliver's assets\DDOL.cs" />
+    <Compile Include="Assets\Scripts\Oliver's assets\appear.cs" />
+    <Compile Include="Assets\Scripts\Oliver's assets\despawn.cs" />
+    <Compile Include="Assets\Scripts\Oliver's assets\flat.cs" />
+    <Compile Include="Assets\Scripts\Oliver's assets\moneyClick_control.cs" />
+    <Compile Include="Assets\Scripts\Oliver's assets\moneyControl.cs" />
+    <Compile Include="Assets\Scripts\Oliver's assets\scroll.cs" />
+    <Compile Include="Assets\Scripts\Oliver's assets\skidEffects.cs" />
     <Compile Include="Assets\Scripts\PedestrianControl.cs" />
     <Compile Include="Assets\Scripts\SelectionManager.cs" />
     <Compile Include="Assets\Scripts\camera_control.cs" />
@@ -133,6 +142,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
+    <Compile Include="Assets\UI\GetDeliveryPositions.cs" />
     <Compile Include="Assets\UI\MainTitle.cs" />
     <Compile Include="Assets\UI\PizzaSelectCamera.cs" />
     <Compile Include="Assets\UI\PizzaShop.cs" />

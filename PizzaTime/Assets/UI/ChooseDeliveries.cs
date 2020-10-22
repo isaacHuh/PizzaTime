@@ -24,7 +24,6 @@ public class ChooseDeliveries : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit))
             {
-                UnityEngine.Debug.Log(hit.transform.name);
                 if (hit.transform.name == "Delivery(Clone)")
                 {
                     deliveryPositionQueue.Add(hit.collider.transform.position);
@@ -47,8 +46,9 @@ public class ChooseDeliveries : MonoBehaviour
                 deliveryPositionQueue.RemoveAt(0);
                 GameObject currentDelivery = Instantiate(deliveryObject, deliveryPositionQueue[0], Quaternion.identity);
             }
-            else
+            else if(deliveryPositionQueue.Count == 0)
             {
+                UnityEngine.Debug.Log("Empty List");
                 deliveryPositionQueue = null;
             }
         }

@@ -19,6 +19,9 @@ public class PizzaShop : MonoBehaviour
     void Start()
     {
         buildings = LevelControl.GetComponent<LevelControl>().buildings;
+        num_deliveries = random.Next(1, 3);
+        UnityEngine.Debug.Log(num_deliveries);
+        setPizzaShop();
     }   
 
     void OnTriggerEnter(Collider collider)
@@ -26,20 +29,7 @@ public class PizzaShop : MonoBehaviour
         if (collider.gameObject.tag == "Player")
         {
             freezeCarMovement(collider);    
-            num_deliveries = random.Next(1, 3);
-            
             createDeliveryPositions();
-        }
-    }
-
-    void OnTriggerExit(Collider collider)
-    {
-        if (collider.gameObject.tag == "Player")
-        {
-            /*Vector3 deliveryPos = GetComponent<ChooseDeliveries>().GetDelivery();
-            UnityEngine.Debug.Log(deliveryPos);*/
-            
-            //GameObject currentDelivery = Instantiate(deliveryLocation, firstDeliveryPos, Quaternion.identity);
         }
     }
     
@@ -60,14 +50,14 @@ public class PizzaShop : MonoBehaviour
     void setPizzaShop()
     {
         int randomBuilding = random.Next(0, buildings.Count - 1);
-        Vector3 pizzaShopPosition = new Vector3(buildings[randomBuilding].GetComponent<BuildingControl>().deliveryPos.x * 10, 5, buildings[randomBuilding].GetComponent<BuildingControl>().deliveryPos.y * 10);
-        for (int i = 0; i < num_deliveries; i++)
+        Vector2Int pizzaShopPosition = buildings[randomBuilding].GetComponent<BuildingControl>().deliveryPos;
+ 
+        if(!deliveryPositions.Contains(pizzaShopPosition))
         {
-            if(deliveryPositions[i].x != pizzaShopPosition.x && deliveryPositions[i].y != pizzaShopPosition.z)
-            {
-                transform.position = pizzaShopPosition;
-            }
+            transform.position = new Vector3(buildings[randomBuilding].GetComponent<BuildingControl>().deliveryPos.x * 10, 5, buildings[randomBuilding].GetComponent<BuildingControl>().deliveryPos.y * 10);
+            return;    
         }
+       
         setPizzaShop();
     }
 

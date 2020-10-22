@@ -587,7 +587,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 741480292}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &632983721
 GameObject:
@@ -985,7 +985,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 650882702}
-  - {fileID: 1848209117}
   - {fileID: 609632569}
   m_Father: {fileID: 0}
   m_RootOrder: 7
@@ -1259,89 +1258,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 191d2f717a1c0aa44903aa428715b722, type: 3}
---- !u!1 &1848209114
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1848209117}
-  - component: {fileID: 1848209116}
-  - component: {fileID: 1848209115}
-  m_Layer: 0
-  m_Name: Top Down Camera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!81 &1848209115
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1848209114}
-  m_Enabled: 0
---- !u!20 &1848209116
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1848209114}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!4 &1848209117
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1848209114}
-  m_LocalRotation: {x: 0.70710665, y: -0, z: -0, w: 0.70710695}
-  m_LocalPosition: {x: -39.144165, y: 140.73848, z: 54.95}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 741480292}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &1848348623 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 963194227, guid: 191d2f717a1c0aa44903aa428715b722,
@@ -1682,6 +1598,16 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1848348623}
+    - target: {fileID: 4466134472350197892, guid: a8537346f8d48a34d8b4ea3c80ae7be3,
+        type: 3}
+      propertyPath: topDown
+      value: 
+      objectReference: {fileID: 609632568}
+    - target: {fileID: 4466134472350197892, guid: a8537346f8d48a34d8b4ea3c80ae7be3,
+        type: 3}
+      propertyPath: ogView
+      value: 
+      objectReference: {fileID: 851494650}
     - target: {fileID: 4466134472350197893, guid: a8537346f8d48a34d8b4ea3c80ae7be3,
         type: 3}
       propertyPath: deliveryLocation
@@ -1761,6 +1687,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_UseGravity
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4466134472350197919, guid: a8537346f8d48a34d8b4ea3c80ae7be3,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.16848297
+      objectReference: {fileID: 0}
+    - target: {fileID: 4466134472350197919, guid: a8537346f8d48a34d8b4ea3c80ae7be3,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0.0584095
+      objectReference: {fileID: 0}
+    - target: {fileID: 4466134472350197919, guid: a8537346f8d48a34d8b4ea3c80ae7be3,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0.15175629
+      objectReference: {fileID: 0}
+    - target: {fileID: 4466134472350197919, guid: a8537346f8d48a34d8b4ea3c80ae7be3,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -0.033802796
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4466134472350197893, guid: a8537346f8d48a34d8b4ea3c80ae7be3, type: 3}

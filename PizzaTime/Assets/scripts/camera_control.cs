@@ -18,7 +18,7 @@ public class camera_control : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             transform.position = overhead.transform.position;
             transform.rotation = overhead.transform.rotation;

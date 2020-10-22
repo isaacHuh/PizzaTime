@@ -6,6 +6,7 @@ using UnityEditor;
 using System;
 using System.Diagnostics;
 using System.Collections.Specialized;
+using TMPro;
 
 public class PizzaShop : MonoBehaviour
 {
@@ -14,59 +15,60 @@ public class PizzaShop : MonoBehaviour
     public GameObject deliveryLocation;
     public GameObject LevelControl;
     List<GameObject> buildings = new List<GameObject>();
-    List<Vector2Int> deliveryPositions = new List<Vector2Int>();
+    public List<Vector2Int> deliveryPositions = new List<Vector2Int>();
+    public TMP_Text pressE;
 
     void Start()
     {
+        num_deliveries = random.Next(1, 3);
+        UnityEngine.Debug.Log(num_deliveries);
         buildings = LevelControl.GetComponent<LevelControl>().buildings;
-    }
-        
+        setPizzaShop();
+    }   
+
     void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.tag == "Player")
         {
-            num_deliveries = random.Next(1, 3);
+            freezeCarMovement(collider);
+            pressE.text = "Press E to choose pizzas to deliver";
             createDeliveryPositions();
         }
     }
-
-    void OnTriggerExit(Collider collider)
-    {
-        if (collider.gameObject.tag == "Player")
-        {
-            /*Vector3 deliveryPos = GetComponent<ChooseDeliveries>().GetDelivery();
-            UnityEngine.Debug.Log(deliveryPos);*/
-            
-            //GameObject currentDelivery = Instantiate(deliveryLocation, firstDeliveryPos, Quaternion.identity);
-        }
-    }
     
-    void createDeliveryPositions()
-    {   
+    public void createDeliveryPositions()
+    {
+        
         for (int i = 0; i < num_deliveries; i++)
         {
             int randomBuilding = random.Next(0, buildings.Count - 1);
             Vector2Int deliveryPos = buildings[randomBuilding].GetComponent<BuildingControl>().deliveryPos;
-            GameObject position = Instantiate(deliveryLocation, new Vector3(deliveryPos.x*10, 5, deliveryPos.y*10), Quaternion.identity);
-            if (deliveryPos != null)
+            if (!deliveryPositions.Contains(deliveryPos) && deliveryPos != null)
             {
+                GameObject position = Instantiate(deliveryLocation, new Vector3(deliveryPos.x * 10, 5, deliveryPos.y * 10), Quaternion.identity);
                 deliveryPositions.Add(deliveryPos);
             }
-            
         }
     }
 
     void setPizzaShop()
     {
         int randomBuilding = random.Next(0, buildings.Count - 1);
-        Vector3 pizzaShopPosition = new Vector3(buildings[randomBuilding].GetComponent<BuildingControl>().deliveryPos.x * 10, 5, buildings[randomBuilding].GetComponent<BuildingControl>().deliveryPos.y * 10);
-        for (int i = 0; i < num_deliveries; i++)
+        Vector2Int pizzaShopPosition = buildings[randomBuilding].GetComponent<BuildingControl>().deliveryPos;
+ 
+        if(!deliveryPositions.Contains(pizzaShopPosition))
         {
-            if(deliveryPositions[i].x != pizzaShopPosition.x && deliveryPositions[i].y != pizzaShopPosition.z)
-            {
-                transform.position = pizzaShopPosition;
-            }
+            transform.position = new Vector3(buildings[randomBuilding].GetComponent<BuildingControl>().deliveryPos.x * 10, 5, buildings[randomBuilding].GetComponent<BuildingControl>().deliveryPos.y * 10);
+            return;    
         }
+       
         setPizzaShop();
+    }
+
+    void freezeCarMovement(Collider collider)
+    {
+        collider.transform.parent.gameObject.transform.parent.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        collider.transform.parent.gameObject.transform.parent.gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        collider.transform.parent.gameObject.transform.parent.gameObject.GetComponent<Rigidbody>().isKinematic = true;
     }
 }

@@ -6,6 +6,7 @@ using UnityEditor;
 using System;
 using System.Diagnostics;
 using System.Collections.Specialized;
+using TMPro;
 
 public class PizzaShop : MonoBehaviour
 {
@@ -14,13 +15,14 @@ public class PizzaShop : MonoBehaviour
     public GameObject deliveryLocation;
     public GameObject LevelControl;
     List<GameObject> buildings = new List<GameObject>();
-    List<Vector2Int> deliveryPositions = new List<Vector2Int>();
+    public List<Vector2Int> deliveryPositions = new List<Vector2Int>();
+    public TMP_Text pressE;
 
     void Start()
     {
-        buildings = LevelControl.GetComponent<LevelControl>().buildings;
         num_deliveries = random.Next(1, 3);
         UnityEngine.Debug.Log(num_deliveries);
+        buildings = LevelControl.GetComponent<LevelControl>().buildings;
         setPizzaShop();
     }   
 
@@ -28,13 +30,15 @@ public class PizzaShop : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
-            freezeCarMovement(collider);    
+            freezeCarMovement(collider);
+            pressE.text = "Press E to choose pizzas to deliver";
             createDeliveryPositions();
         }
     }
     
-    void createDeliveryPositions()
-    {   
+    public void createDeliveryPositions()
+    {
+        
         for (int i = 0; i < num_deliveries; i++)
         {
             int randomBuilding = random.Next(0, buildings.Count - 1);

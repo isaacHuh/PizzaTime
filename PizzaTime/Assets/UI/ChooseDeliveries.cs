@@ -10,13 +10,14 @@ public class ChooseDeliveries : MonoBehaviour
     //List<Vector2Int> deliveryPositions = GetComponent<PizzaShop>.deliveryPositions;
     public List<Vector3> deliveryPositionQueue = new List<Vector3>();
     public GameObject deliveryObject;
-    
+    public GameObject pizzaShop;
+
     void Update()
     {
         ChooseDelivery();
     }
 
-    public void ChooseDelivery()
+    void ChooseDelivery()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -30,7 +31,7 @@ public class ChooseDeliveries : MonoBehaviour
                     if (deliveryPositionQueue.Count > 1)
                     {
                         Destroy(hit.collider.transform.gameObject);
-                    }
+                    }   
                 }
             }
         }
@@ -40,17 +41,15 @@ public class ChooseDeliveries : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
+            pizzaShop.SetActive(true);
             Destroy(gameObject);
-            if (deliveryPositionQueue.Count > 1)
+            if (deliveryPositionQueue.Count > 0)
             {
                 deliveryPositionQueue.RemoveAt(0);
                 GameObject currentDelivery = Instantiate(deliveryObject, deliveryPositionQueue[0], Quaternion.identity);
             }
-            else if(deliveryPositionQueue.Count == 0)
-            {
-                UnityEngine.Debug.Log("Empty List");
-                deliveryPositionQueue = null;
-            }
         }
     }
+
+   
 }

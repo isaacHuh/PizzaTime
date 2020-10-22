@@ -3,31 +3,34 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Security.Cryptography;
 using UnityEngine;
+using TMPro;
 
 public class PizzaSelectCamera : MonoBehaviour
 {
     public GameObject topDown;
     public GameObject ogView;
     public Camera mainCamera;
-    
+    public TMP_Text pressE;
+    public TMP_Text pressQ;
+
 
     void OnTriggerStay(Collider collider)
     {
         if (collider.gameObject.tag == "Player" && Input.GetKeyDown(KeyCode.E))
         {
+            pressE.text = "";
+            pressQ.text = "Press Q to quit";
             switchCamera();
+            
         }
         if (collider.gameObject.tag == "Player" && Input.GetKeyDown(KeyCode.Q))
         {
             switchCameraBack();
+            pressQ.text = "";
             gameObject.SetActive(false);
             collider.transform.parent.gameObject.transform.parent.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            
         }
-    }
-
-    void OnTriggerExit(Collider collider)
-    {
-        gameObject.SetActive(true);
     }
 
     void switchCamera()

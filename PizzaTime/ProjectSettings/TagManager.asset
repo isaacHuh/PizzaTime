@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Location
   - Pizza Shop
+  - Delivery
   layers:
   - Default
   - TransparentFX

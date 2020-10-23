@@ -7,13 +7,14 @@ public class moneyClick_control : MonoBehaviour
 
     public bool mouseEffect = false;
     public float value;
-    public moneyControl money; 
+    public MoneyManager money; 
 
     Vector3 startPos;
     private bool pressed = false;
     // Start is called before the first frame update
     void Start()
     {
+        money = GameObject.Find("MoneyManager").GetComponent<MoneyManager>();
         startPos = gameObject.transform.position;
     }
 
@@ -53,7 +54,7 @@ public class moneyClick_control : MonoBehaviour
     {
         if (!pressed)
         {
-            money.Subtract(value);
+            money.budget -= value;
             pressed = true;
         }
     }

@@ -154,7 +154,7 @@ Transform:
   - {fileID: 4658523687651494950}
   - {fileID: 1942281415}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &49942877
 GameObject:
@@ -307,7 +307,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 08a04320ce8976c4390d7004cc859400, type: 3}
+    m_Font: {fileID: 12800000, guid: f0d644dd55dd0244bb22159dd1c62165, type: 3}
     m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
@@ -396,67 +396,6 @@ MonoBehaviour:
   verticle: 1
   forward: 1
   endPoint: 0
---- !u!1 &229459263
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 229459265}
-  - component: {fileID: 229459266}
-  - component: {fileID: 229459264}
-  m_Layer: 0
-  m_Name: Money_Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &229459264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 229459263}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08e5d4f655dd9ba48a526871ad51f74d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &229459265
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 229459263}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 107, y: 54, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &229459266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 229459263}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f6d2179f391b6247a2cb0518f1b0a2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  budget: {fileID: 710740705}
-  rent: {fileID: 522169888}
-  fines: {fileID: 1966854893}
-  income: {fileID: 1983041615}
-  money: 0
 --- !u!1 &522169885
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,7 +409,7 @@ GameObject:
   - component: {fileID: 522169888}
   - component: {fileID: 522169887}
   m_Layer: 5
-  m_Name: amount (2)
+  m_Name: RentAmount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -522,7 +461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: -3598500789205211373, guid: 67deb921e7b5b5a4abe7e33d5a47ffa1,
     type: 2}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.34509805, b: 0.34509805, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -614,7 +553,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &697778349
 PrefabInstance:
@@ -738,7 +677,7 @@ GameObject:
   - component: {fileID: 710740705}
   - component: {fileID: 710740704}
   m_Layer: 5
-  m_Name: amount
+  m_Name: BudgetAmount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -883,7 +822,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: -3598500789205211373, guid: 67deb921e7b5b5a4abe7e33d5a47ffa1,
     type: 2}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.34509805, b: 0.34509805, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1070,8 +1009,8 @@ Canvas:
   m_GameObject: {fileID: 1030835259}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 2050073533}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1100,7 +1039,7 @@ RectTransform:
   - {fileID: 66839045}
   - {fileID: 49942878}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1315,7 +1254,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 08a04320ce8976c4390d7004cc859400, type: 3}
+    m_Font: {fileID: 12800000, guid: f0d644dd55dd0244bb22159dd1c62165, type: 3}
     m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
@@ -1401,7 +1340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: -3598500789205211373, guid: 67deb921e7b5b5a4abe7e33d5a47ffa1,
     type: 2}
-  m_Color: {r: 0, g: 1, b: 0.16595936, a: 1}
+  m_Color: {r: 0.34509805, g: 1, b: 0.34509805, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1429,6 +1368,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1330881465}
   m_CullTransparentMesh: 0
+--- !u!1 &1488377392
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1488377394}
+  - component: {fileID: 1488377393}
+  m_Layer: 0
+  m_Name: MoneyTextManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1488377393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488377392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f6d2179f391b6247a2cb0518f1b0a2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  budget: {fileID: 710740705}
+  rent: {fileID: 522169888}
+  fines: {fileID: 1966854893}
+  income: {fileID: 1983041615}
+  money: {fileID: 0}
+--- !u!4 &1488377394
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1488377392}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.9311864, y: -6.6761727, z: -59.61622}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1672272505
 GameObject:
   m_ObjectHideFlags: 0
@@ -1670,7 +1657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: -3598500789205211373, guid: 67deb921e7b5b5a4abe7e33d5a47ffa1,
     type: 2}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.34509805, b: 0.34509805, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1959,7 +1946,7 @@ GameObject:
   - component: {fileID: 1966854893}
   - component: {fileID: 1966854892}
   m_Layer: 5
-  m_Name: amount (2)
+  m_Name: FineAmount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2011,7 +1998,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: -3598500789205211373, guid: 67deb921e7b5b5a4abe7e33d5a47ffa1,
     type: 2}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.34509805, b: 0.34509805, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2052,7 +2039,7 @@ GameObject:
   - component: {fileID: 1983041615}
   - component: {fileID: 1983041614}
   m_Layer: 5
-  m_Name: amount (1)
+  m_Name: IncomeAmount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2104,7 +2091,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: -3598500789205211373, guid: 67deb921e7b5b5a4abe7e33d5a47ffa1,
     type: 2}
-  m_Color: {r: 0, g: 1, b: 0.16595936, a: 1}
+  m_Color: {r: 0.34509805, g: 1, b: 0.34509805, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2144,6 +2131,7 @@ GameObject:
   - component: {fileID: 2050073533}
   - component: {fileID: 2050073532}
   - component: {fileID: 2050073535}
+  - component: {fileID: 2050073536}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2232,6 +2220,59 @@ MonoBehaviour:
   verticle: 0
   forward: 1
   endPoint: 0.7
+--- !u!114 &2050073536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050073531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 106e5c17785b41a49af8d53198407d04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Dither: 1
+  Pixelate: 0
+  Grain: 0
+  Grain_Old: 0
+  Grain_New: 0
+  grain:
+    m_Enabled: 0
+    m_Settings:
+      colored: 0
+      intensity: 0.2
+      size: 0.4
+      luminanceContribution: 0
+      animated: 0
+  colored: 0
+  intensity: 0.2
+  size: 0.4
+  luminanceContribution: 0
+  animated: 0
+  _palette: {fileID: 11400000, guid: 7132d3aaa7025b044a325a6a0d1b7f75, type: 2}
+  _pattern: {fileID: 11400000, guid: c04ded80bff222144821a17e2c63de70, type: 2}
+  _patternTexture: {fileID: 0}
+  _shader: {fileID: 4800000, guid: 0e4c0c6d48b7240d8b59f441b94c2b0e, type: 3}
+  _pixelScale: 0.5
+  intensityMultiplier: 0.25
+  generalIntensity: 0.5
+  blackIntensity: 1
+  whiteIntensity: 1
+  midGrey: 0.2
+  dx11Grain: 0
+  softness: 0.0001
+  monochrome: 1
+  intensities: {x: 1, y: 1, z: 1}
+  tiling: {x: 64, y: 64, z: 64}
+  monochromeTiling: 64
+  filterMode: 1
+  noiseTexture: {fileID: 2800000, guid: 7a632f967e8ad42f5bd275898151ab6a, type: 3}
+  noiseShader: {fileID: 4800000, guid: 2b63037831bb3834dbe7f37515cc9ec8, type: 3}
+  dx11NoiseShader: {fileID: 0}
+  profile: {fileID: 11400000, guid: 82310dfd7a370d54c978d7127017f6d1, type: 2}
+  ub: {fileID: 2100000, guid: 1e274b34f167f8543b55f5c4508f0190, type: 2}
+  gm: {fileID: 2100000, guid: a5e1c8f35889879478f0d1a0bbdc1cb7, type: 2}
 --- !u!1 &4658523687023794944
 GameObject:
   m_ObjectHideFlags: 0
@@ -2751,7 +2792,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseEffect: 0
   value: 20
-  money: {fileID: 229459266}
+  money: {fileID: 0}
 --- !u!1 &4658523687543715335
 GameObject:
   m_ObjectHideFlags: 0
@@ -2919,7 +2960,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseEffect: 0
   value: 60
-  money: {fileID: 229459266}
+  money: {fileID: 0}
 --- !u!65 &4658523687651494949
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3087,7 +3128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseEffect: 0
   value: 100
-  money: {fileID: 229459266}
+  money: {fileID: 0}
 --- !u!23 &4658523687744610634
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3431,7 +3472,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseEffect: 0
   value: 50
-  money: {fileID: 229459266}
+  money: {fileID: 0}
 --- !u!23 &4658523689018256025
 MeshRenderer:
   m_ObjectHideFlags: 0

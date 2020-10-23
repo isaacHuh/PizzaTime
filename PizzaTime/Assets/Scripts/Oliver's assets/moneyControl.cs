@@ -10,24 +10,21 @@ public class moneyControl : MonoBehaviour
     public Text fines;
     public Text income;
 
-    public float money = 0f;
+    public MoneyManager money;
 
     // Start is called before the first frame update
     void Start()
     {
-        money += float.Parse(income.text);
-        Subtract(float.Parse(rent.text));
-        Subtract(float.Parse(fines.text));
+        money = GameObject.Find("MoneyManager").GetComponent<MoneyManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        budget.text = money.ToString("000");
+        budget.text = money.budget.ToString();
+        rent.text = money.rent.ToString();
+        fines.text = money.fines.ToString();
+        income.text = money.income.ToString();
     }
 
-    public void Subtract(float amount)
-    {
-        money -= amount;
-    }
 }

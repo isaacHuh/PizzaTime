@@ -940,7 +940,6 @@ GameObject:
   - component: {fileID: 3291750838137003320}
   - component: {fileID: 3291750838134137418}
   - component: {fileID: 7246002054704238237}
-  - component: {fileID: 2940067280581945647}
   m_Layer: 0
   m_Name: Car Variant
   m_TagString: Player
@@ -1011,18 +1010,6 @@ MonoBehaviour:
   FR_transform: {fileID: 7035857541853369593}
   RL_transform: {fileID: 1951436000527218953}
   RR_transform: {fileID: 4575817786435428163}
---- !u!114 &2940067280581945647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3291750838137487680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88d34d7ae4b980247a89a83b7ad6b99e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3291750838137487688
 GameObject:
   m_ObjectHideFlags: 0

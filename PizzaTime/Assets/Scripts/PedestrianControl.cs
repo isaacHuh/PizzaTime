@@ -44,8 +44,11 @@ public class PedestrianControl : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && gameObject.GetComponent<Animation>().enabled == true)
         {
+            MoneyManager moneyManager = GameObject.Find("MoneyManager").GetComponent<MoneyManager>();
+            moneyManager.budget -= 100;
+            moneyManager.fines += 100;
             gameObject.GetComponent<Animation>().enabled = false;
         }
     }

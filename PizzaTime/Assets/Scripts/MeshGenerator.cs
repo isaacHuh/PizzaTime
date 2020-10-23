@@ -24,12 +24,13 @@ public class MeshGenerator : MonoBehaviour
     public LevelControl levelControl;
     public int[,] levelArray;
 
+    int extraSize = 300;
     // Start is called before the first frame update
     void Start()
     {
         levelArray = levelControl.GetLevelArray();
-        xSize = levelControl.arraySize * (int)levelControl.blockSize + 100;
-        zSize = levelControl.arraySize * (int)levelControl.blockSize + 100;
+        xSize = levelControl.arraySize * (int)levelControl.blockSize + extraSize;
+        zSize = levelControl.arraySize * (int)levelControl.blockSize + extraSize;
 
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
@@ -91,8 +92,8 @@ public class MeshGenerator : MonoBehaviour
                     minNoiseHeight = y;
                 }
 
-                int arrayY = (int)((float)(z - 50) / levelControl.blockSize);
-                int arrayX = (int)((float)(x - 50) / levelControl.blockSize);
+                int arrayY = (int)((float)(z - (extraSize/2)) / levelControl.blockSize);
+                int arrayX = (int)((float)(x - (extraSize/2)) / levelControl.blockSize);
 
                 if (arrayX < levelControl.arraySize && arrayY < levelControl.arraySize && arrayX >= 0 && arrayY >= 0)
                 {
@@ -157,8 +158,8 @@ public class MeshGenerator : MonoBehaviour
         {
             for (int x = 0; x < xSize; x++)
             {
-                int arrayY = (int)((float)(z - 50) / levelControl.blockSize);
-                int arrayX = (int)((float)(x - 50) / levelControl.blockSize);
+                int arrayY = (int)((float)(z - (extraSize/2)) / levelControl.blockSize);
+                int arrayX = (int)((float)(x - (extraSize/2)) / levelControl.blockSize);
                 
                 if (arrayX < levelControl.arraySize && arrayY < levelControl.arraySize && arrayX >= 0 && arrayY >= 0)
                 {

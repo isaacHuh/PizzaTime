@@ -97,7 +97,7 @@ public class LevelControl : MonoBehaviour
                     continue;
                 }
                 Vector3 pos = nodeArray[i, j].transform.localPosition;
-                pos.y = 0;
+                pos.y = -5;
                 nodeArray[i, j].transform.localPosition = pos;
             }
         }
@@ -105,7 +105,7 @@ public class LevelControl : MonoBehaviour
         foreach (Node obj in path)
         {
             Vector3 pos = obj.transform.localPosition;
-            pos.y = -5;
+            pos.y = 0;
             obj.transform.localPosition = pos;
         }
     }

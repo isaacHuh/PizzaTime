@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class Timer : MonoBehaviour
         {
             miliseconds = 0;
             timer.text = string.Format("{0}:{1}", seconds, (int)miliseconds);
+            SceneManager.LoadScene(2);
             return;
         }
 

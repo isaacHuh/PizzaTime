@@ -16,6 +16,7 @@ public class moneyControl : MonoBehaviour
     void Start()
     {
         money = GameObject.Find("MoneyManager").GetComponent<MoneyManager>();
+        money.budget -= money.rent;
     }
 
     // Update is called once per frame
